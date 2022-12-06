@@ -19,7 +19,7 @@ namespace Business.Concretes
         public async Task<ProductWithDetail> Add(ProductWithDetail item)
         {
             var product = await _productDal.Add(item.Product);
-            var productDetail = await _detailDal.Add(item.Product.ProductID, item.ProductDetail);
+            var productDetail = await _detailDal.Add(item.Product.ID, item.ProductDetail);
             ProductWithDetail productWithDetail = new ProductWithDetail();
             productWithDetail.Product = product;
             productWithDetail.ProductDetail = productDetail;
@@ -46,7 +46,7 @@ namespace Business.Concretes
                 var productDetails = await _detailDal.Get();
                 ProductWithDetail productWithDetail = new ProductWithDetail();
                 productWithDetail.Product = item;
-                string productID = $"p{item.ProductID}";
+                string productID = $"p{item.ID}";
                 productWithDetail.ProductDetail = productDetails.ContainsKey(productID) ? productDetails[productID] : null; 
                 productWithDetails.Add(productWithDetail);
             }
@@ -66,7 +66,7 @@ namespace Business.Concretes
         public async Task<ProductWithDetail> Update(ProductWithDetail item)
         {
             var product = await _productDal.Update(item.Product);
-            var productDetail = await _detailDal.Update(item.Product.ProductID, item.ProductDetail);
+            var productDetail = await _detailDal.Update(item.Product.ID, item.ProductDetail);
             return new ProductWithDetail { Product = product, ProductDetail = productDetail };
         }
     }

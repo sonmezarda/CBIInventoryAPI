@@ -1,5 +1,6 @@
 ﻿using Business.Concretes;
 using Entities.Concretes;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +8,7 @@ namespace CBIInventoryAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         ProductManager _productManager = new ProductManager();
         [HttpGet]
@@ -16,6 +17,7 @@ namespace CBIInventoryAPI.Controllers
             List<ProductWithDetail> products = await _productManager.Get();
             return products;
         }
+
         [HttpGet("{id}")]
         public async Task<ProductWithDetail> GetByID(int id)
         {

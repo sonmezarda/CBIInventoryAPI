@@ -34,14 +34,14 @@ namespace DataAccess.Concretes.DetailDal
         public async Task<ProductDetail> Add(int id, ProductDetail item)
         {
             client = new FireSharp.FirebaseClient(config);
-            var response = await client.SetAsync($"Products/p{id}", item);
+            var response = await client.SetAsync($"products/p{id}", item);
             return item;
         }
 
         public async Task<int> Delete(int id)
         {
             client = new FireSharp.FirebaseClient(config);
-            var response = await client.DeleteAsync($"Products/p{id}");
+            var response = await client.DeleteAsync($"products/p{id}");
             return (int)response.StatusCode;
         }
 
@@ -50,7 +50,7 @@ namespace DataAccess.Concretes.DetailDal
             if(filter == null)
             {
                 client = new FireSharp.FirebaseClient(config);
-                var response = await client.GetAsync("Products");
+                var response = await client.GetAsync("products");
                 Dictionary<string, ProductDetail> productDetails = response.ResultAs<Dictionary<string, ProductDetail>>();
                 return productDetails;
             }

@@ -12,9 +12,9 @@ namespace DataAccess.Concretes
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server = DESKTOP-MEA3PRN\NEWSQLSERVER; Database=DbCBI;User Id = DESKTOP-MEA3PRN\ardac;Encrypt=False;TrustServerCertificate=True;Integrated Security = SSPI;");
+            optionsBuilder.UseSqlServer(@"Server = (localdb)\MSSQLLocalDB; Database=CBIInventoryDB; ;Trusted_Connection=true;");
         }
 
-        public DbSet<Product> TBLProducts { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }

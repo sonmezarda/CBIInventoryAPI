@@ -58,7 +58,7 @@ namespace DataAccess.Concretes.ProductDal
         {
             using(ProductContext context = new ProductContext())
             {
-                Product product = await context.Set<Product>().Where(p=>p.ProductID==id).SingleOrDefaultAsync();
+                Product product = await context.Set<Product>().Where(p=>p.ID==id).SingleOrDefaultAsync();
                 return product;
             }
         }
