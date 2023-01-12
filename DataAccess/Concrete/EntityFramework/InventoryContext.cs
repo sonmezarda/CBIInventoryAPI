@@ -1,14 +1,9 @@
-﻿using Entities.Concretes;
+﻿using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DataAccess.Concretes
+namespace DataAccess.Concrete.EntityFramework
 {
-    public class ProductContext: DbContext
+    public class InventoryContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -16,5 +11,7 @@ namespace DataAccess.Concretes
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Box> Boxes { get; set; }
     }
 }

@@ -1,46 +1,85 @@
-﻿using Business.Concretes;
-using Entities.Concretes;
-using Microsoft.AspNetCore.Cors;
+﻿using Business.Abstract;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CBIInventoryAPI.Controllers
+namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        ProductManager _productManager = new ProductManager();
-        [HttpGet]
-        public async Task<List<ProductWithDetail>> GetAsync()
+        private readonly IProductService _productService;
+
+        public ProductsController(IProductService productService)
         {
-            List<ProductWithDetail> products = await _productManager.Get();
-            return products;
+            _productService = productService;
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var result = _productService.GetAll();
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbycategoryid/{categoryId}")]
+        public IActionResult GetByCategoryId(int categoryId)
+        {
+            var result = _productService.GetByCategoryId(categoryId);
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<ProductWithDetail> GetByID(int id)
+        public IActionResult GetById(int id)
         {
-            ProductWithDetail product = await _productManager.GetByID(id);
-            return product;
+            var result = (_productService.GetById(id));
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
         [HttpPost]
-        public async Task<ProductWithDetail> PostAsync([FromBody] ProductWithDetail product)
+        public IActionResult Add(Product product)
         {
-           return await _productManager.Add(product);
+            var result = _productService.Add(product);
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
         [HttpPut]
-        public async Task<ProductWithDetail> PutAsync([FromBody] ProductWithDetail product)
+        public IActionResult Update(Product product)
         {
-            return await _productManager.Update(product);
+            var result = _productService.Update(product);
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<bool> DeleteAsync(int id)
+        [HttpDelete]
+        public IActionResult Delete(Product product)
         {
-            return await _productManager.Delete(id);
+            var result = _productService.Delete(product);
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }

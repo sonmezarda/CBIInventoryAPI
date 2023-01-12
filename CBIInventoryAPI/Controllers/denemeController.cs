@@ -1,19 +1,18 @@
-﻿using DataAccess.Concretes.DetailDal;
-using DataAccess.Concretes.ProductDal;
-using Entities.Concretes;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using DataAccess.Concrete.DetailDal;
+using Entities.Concrete;
 
 namespace CBIInventoryAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class denemeController : ControllerBase
+    public class DenemeController : ControllerBase
     {
-        FBDetailDal _detailDal = new FBDetailDal();
+        FbDetailDal _detailDal = new FbDetailDal();
         [HttpGet]/*
         public async Task<ProductDetail> Deneme()
         {

@@ -1,47 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Threading.Tasks;
-using DataAccess.Abstracts;
-using Entities.Concretes;
+﻿using System.Linq.Expressions;
+using Entities.Concrete;
 using FireSharp.Config;
 using FireSharp.Interfaces;
 
-namespace DataAccess.Concretes.DetailDal
+namespace DataAccess.Concrete.DetailDal
 {
-    public class FBDetailDal
+    public class FbDetailDal
     {
-        IFirebaseConfig config = new FirebaseConfig
+        IFirebaseConfig _config = new FirebaseConfig
         {
             AuthSecret = "lIH6D6vXv8I0gdu9E865H06jYJqRr2iR1xdbUiYU",
             BasePath = "https://itucbi-default-rtdb.europe-west1.firebasedatabase.app/"
 
         };
-        IFirebaseClient client;
+        IFirebaseClient _client;
 
         public string Connection()
         {
-            client = new FireSharp.FirebaseClient(config);
+            _client = new FireSharp.FirebaseClient(_config);
 
-            if (client != null) return "OK";
+            if (_client != null) return "OK";
             else return "Fail";
         }
 
         public async Task<ProductDetail> Add(int id, ProductDetail item)
         {
-            client = new FireSharp.FirebaseClient(config);
-            var response = await client.SetAsync($"products/p{id}", item);
+            _client = new FireSharp.FirebaseClient(_config);
+            var response = await _client.SetAsync($"products/p{id}", item);
             return item;
         }
 
         public async Task<int> Delete(int id)
         {
-            client = new FireSharp.FirebaseClient(config);
-            var response = await client.DeleteAsync($"products/p{id}");
+            _client = new FireSharp.FirebaseClient(_config);
+            var response = await _client.DeleteAsync($"products/p{id}");
             return (int)response.StatusCode;
         }
 
@@ -49,8 +41,8 @@ namespace DataAccess.Concretes.DetailDal
         {
             if(filter == null)
             {
-                client = new FireSharp.FirebaseClient(config);
-                var response = await client.GetAsync("products");
+                _client = new FireSharp.FirebaseClient(_config);
+                var response = await _client.GetAsync("products");
                 Dictionary<string, ProductDetail> productDetails = response.ResultAs<Dictionary<string, ProductDetail>>();
                 return productDetails;
             }
@@ -60,18 +52,18 @@ namespace DataAccess.Concretes.DetailDal
             }
         }
 
-        public async Task<ProductDetail> GetByID(int id)
+        public async Task<ProductDetail> GetById(int id)
         {
-            client = new FireSharp.FirebaseClient(config);
-            var response = await client.GetAsync($"Products/p{id}");
+            _client = new FireSharp.FirebaseClient(_config);
+            var response = await _client.GetAsync($"Products/p{id}");
             ProductDetail productDetail = response.ResultAs<ProductDetail>();
             return productDetail;
         }
 
         public async Task<ProductDetail> Update(int id, ProductDetail productDetail)
         {
-            client = new FireSharp.FirebaseClient(config);
-            var response = await client.UpdateAsync($"Products/p{id}", productDetail);
+            _client = new FireSharp.FirebaseClient(_config);
+            var response = await _client.UpdateAsync($"Products/p{id}", productDetail);
             return productDetail;
         }
     }
