@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = _productService.GetAll();
+            var result = _productService.GetAllWithNames();
             if (result.IsSuccess)
             {
                 return Ok(result);

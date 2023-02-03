@@ -2,6 +2,7 @@ using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using DataAccess.Concrete.FireBase;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,9 @@ builder.Services.AddSingleton<IProductService, ProductManager>();
 
 builder.Services.AddSingleton<ICategoryDal, EfCategoryDal>();
 builder.Services.AddSingleton<ICategoryService, CategoryManager>();
+
+builder.Services.AddSingleton<IProductDetailDal, FBProductDetailDal>();
+builder.Services.AddSingleton<IProductDetailService, ProductDetailManager>();
 
 builder.Services.AddCors(options =>
 {

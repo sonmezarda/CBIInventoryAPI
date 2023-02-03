@@ -3,8 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text.Json;
 using System.Text.Json.Nodes;
-using DataAccess.Concrete.DetailDal;
 using Entities.Concrete;
+using DataAccess.Concrete.FireBase;
+using FireSharp.Interfaces;
+using FireSharp.Config;
+using System.ComponentModel;
+using Business.Abstract;
+using Core.Utilities.Results;
 
 namespace CBIInventoryAPI.Controllers
 {
@@ -12,31 +17,22 @@ namespace CBIInventoryAPI.Controllers
     [ApiController]
     public class DenemeController : ControllerBase
     {
-        FbDetailDal _detailDal = new FbDetailDal();
-        [HttpGet]/*
-        public async Task<ProductDetail> Deneme()
-        {
-            FBDetailDal detailDal = new FBDetailDal();
-            ProductDetail productDetail = await detailDal.GetByID(1);
-            
-            return productDetail;
-        }*/
-        public async Task<Dictionary<string, ProductDetail>> Deneme()
-        {
+        private readonly IProductDetailService _productDetailService;
 
-            Dictionary<string, ProductDetail> productDetail = await _detailDal.Get();
+        public DenemeController(IProductDetailService productDetailService)
+        {
+            _productDetailService = productDetailService;
+        }
+        [HttpGet]
+        public IActionResult Deneme()
+        {
+            var result = _productDetailService.GetAll();
 
-            return productDetail;
-        }
-        [HttpDelete("{id}")]
-        public async Task<int> Delete(int id)
-        {
-            return 1;
-        }
-        [HttpPost("{id}")]
-        public async Task<ProductDetail> Add(int id, [FromBody] ProductDetail productDetail)
-        {
-            return await _detailDal.Add(id, productDetail);
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }

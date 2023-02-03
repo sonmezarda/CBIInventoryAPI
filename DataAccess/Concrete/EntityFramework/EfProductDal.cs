@@ -10,15 +10,16 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfProductDal : EfEntityRepository<Product, InventoryContext>, IProductDal
     {
-        public List<ProductDetailDto> GetAllWithDetails()
+        public List<ProductWithNamesDto> GetAll()
         {
+            
             using (InventoryContext context = new InventoryContext())
             {
                 var result = from p in context.Products
                     join c in context.Categories
                         on p.CategoryId equals c.Id
                     join b in context.Boxes on p.BoxId equals b.Id
-                    select new ProductDetailDto
+                    select new ProductWithNamesDto
                     {
                         Id = p.Id,
                         Name = p.Name,

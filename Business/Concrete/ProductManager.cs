@@ -19,9 +19,9 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
-        public DataResult<List<ProductDetailDto>> GetAll()
+        public DataResult<List<ProductWithNamesDto>> GetAllWithNames()
         {
-            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetAllWithDetails());
+            return new SuccessDataResult<List<ProductWithNamesDto>>(_productDal.GetAll());
         }
 
         public DataResult<List<Product>> GetByCategoryId(int categoryId)
