@@ -17,7 +17,7 @@ namespace Business.Abstract
         DataResult<Product> GetById(int id);
         Result Add(Product product);
         Result Update(Product product);
-        Result Delete(Product product);
+        Result Delete(int id);
         DataResult<ProductWithDetail> GetWithDetailById(int id);
     }
 }

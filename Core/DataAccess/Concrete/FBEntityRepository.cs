@@ -26,7 +26,7 @@ namespace Core.DataAccess.Abstract
             };
             this.client = new FireSharp.FirebaseClient(_config);
         }
-        public void Add(TEntity entity)
+        public TEntity Add(TEntity entity)
         {
             throw new NotImplementedException();
         }

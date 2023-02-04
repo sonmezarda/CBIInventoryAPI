@@ -15,6 +15,10 @@ builder.Services.AddSingleton<ICategoryService, CategoryManager>();
 builder.Services.AddSingleton<IProductDetailDal, FBProductDetailDal>();
 builder.Services.AddSingleton<IProductDetailService, ProductDetailManager>();
 
+builder.Services.AddSingleton<IProductCommentDal, EFProductCommentDal>();
+builder.Services.AddSingleton<ICommentService, CommentManager>();
+
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(

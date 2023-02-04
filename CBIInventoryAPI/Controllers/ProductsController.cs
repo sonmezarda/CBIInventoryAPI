@@ -71,17 +71,17 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpDelete]
-        public IActionResult Delete(Product product)
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
         {
-            var result = _productService.Delete(product);
+            var result = _productService.Delete(id);
             if (result.IsSuccess)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpGet("D1")]
+        [HttpGet("detail/{id}")]
         public IActionResult GetSP(int id)
         {
             var result = _productService.GetWithDetailById(id);
