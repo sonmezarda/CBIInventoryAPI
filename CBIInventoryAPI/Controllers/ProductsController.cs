@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var result = (_productService.GetById(id));
+            var result = (_productService.GetByIdWithNames(id));
             if (result.IsSuccess)
             {
                 return Ok(result);
@@ -75,6 +75,16 @@ namespace WebAPI.Controllers
         public IActionResult Delete(Product product)
         {
             var result = _productService.Delete(product);
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("D1")]
+        public IActionResult GetSP(int id)
+        {
+            var result = _productService.GetWithDetailById(id);
             if (result.IsSuccess)
             {
                 return Ok(result);

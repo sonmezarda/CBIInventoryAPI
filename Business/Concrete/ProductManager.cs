@@ -29,9 +29,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == categoryId));
         }
 
-        public DataResult<Product> GetById(int id)
+        public DataResult<ProductWithNamesDto> GetByIdWithNames(int id)
         {
-            return new SuccessDataResult<Product>(_productDal.Get(p => p.Id == id));
+            return new SuccessDataResult<ProductWithNamesDto>(_productDal.Get(p => p.Id == id));
         }
 
         public Result Add(Product product)
@@ -50,6 +50,16 @@ namespace Business.Concrete
         {
             _productDal.Delete(product);
             return new SuccessResult();
+        }
+
+        public DataResult<ProductWithDetail> GetWithDetailById(int id)
+        {
+            return new SuccessDataResult<ProductWithDetail>(_productDal.GetWithDetailById(id));
+        }
+
+        DataResult<Product> IProductService.GetById(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

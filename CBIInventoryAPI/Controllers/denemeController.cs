@@ -34,5 +34,6 @@ namespace CBIInventoryAPI.Controllers
             }
             return BadRequest(result);
         }
+        
     }
 }
