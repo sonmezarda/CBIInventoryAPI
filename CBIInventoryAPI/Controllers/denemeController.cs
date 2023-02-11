@@ -26,14 +26,9 @@ namespace CBIInventoryAPI.Controllers
         [HttpGet]
         public IActionResult Deneme()
         {
-            var result = _productDetailService.GetAll();
-
-            if (result.IsSuccess)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return Ok("Hello World");
         }
+
         
     }
 }
