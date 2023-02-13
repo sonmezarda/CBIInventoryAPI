@@ -1,10 +1,11 @@
 ﻿using Core.Entities.Abstract;
+using Entities.DTOs;
 
 namespace Entities.Concrete
 {
     public class ProductDetail : IEntity
     {
-        public Dictionary<string, ProductComment>? Comments { get; set; }
-        public Dictionary<string,string>? Specs { get; set; }
+        public List<ProductComment>? Comments { get; set; }
+        public List<SpecWithName>? Specs { get; set; }
     }
 }

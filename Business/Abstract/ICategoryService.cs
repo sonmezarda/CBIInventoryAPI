@@ -12,8 +12,8 @@ namespace Business.Abstract
     {
         DataResult<List<Category>> GetAll();
         DataResult<Category> GetById(int id);
-        Result Add(Category category);
+        DataResult<Category> Add(Category category);
         Result Update(Category category);
-        Result Delete(Category category);
+        Result Delete(int id);
     }
 }

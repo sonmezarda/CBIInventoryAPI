@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = _productService.GetAll();
+            var result = _productService.GetAllWithNames();
             if (result.IsSuccess)
             {
                 return Ok(result);
@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var result = (_productService.GetById(id));
+            var result = (_productService.GetByIdWithNames(id));
             if (result.IsSuccess)
             {
                 return Ok(result);
@@ -71,10 +71,20 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpDelete]
-        public IActionResult Delete(Product product)
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
         {
-            var result = _productService.Delete(product);
+            var result = _productService.Delete(id);
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("detail/{id}")]
+        public IActionResult GetSP(int id)
+        {
+            var result = _productService.GetWithDetailById(id);
             if (result.IsSuccess)
             {
                 return Ok(result);

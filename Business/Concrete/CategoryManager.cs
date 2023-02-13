@@ -23,10 +23,10 @@ namespace Business.Concrete
             return new SuccessDataResult<Category>(_categoryDal.Get(p => p.Id == id));
         }
 
-        public Result Add(Category category)
+        public DataResult<Category> Add(Category category)
         {
-            _categoryDal.Add(category);
-            return new SuccessResult();
+            //_categoryDal.Add(category);
+            return new SuccessDataResult<Category>(_categoryDal.Add(category));
         }
 
         public Result Update(Category category)
@@ -34,10 +34,10 @@ namespace Business.Concrete
             _categoryDal.Update(category);
             return new SuccessResult();
         }
-
-        public Result Delete(Category category)
+        public Result Delete(int id)
         {
-            _categoryDal.Delete(category);
+            var entity = _categoryDal.Get(p=> p.Id == id);
+            _categoryDal.Delete(entity);
             return new SuccessResult();
         }
     }
