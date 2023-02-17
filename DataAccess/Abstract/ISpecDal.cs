@@ -12,8 +12,9 @@ namespace DataAccess.Abstract
 {
     public interface ISpecDal : IEntityRepository<Spec>
     {
-        List<SpecWithName> GetByProductId(int id);
-        List<SpecWithName> GetAll(Expression<Func<SpecWithName, bool>>? filter = null);
-        SpecWithName Get(Expression<Func<SpecWithName, bool>>? filter=null);
+        public SpecWithName Get(Expression<Func<SpecWithName, bool>>? filter = null);
+        public List<SpecWithName> GetAllWithNames(Expression<Func<SpecWithName, bool>>? filter = null);
+        public List<SpecWithName> GetByProductId(int id);
+
     }
 }
