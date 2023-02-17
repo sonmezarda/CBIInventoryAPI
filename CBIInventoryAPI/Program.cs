@@ -18,6 +18,13 @@ builder.Services.AddSingleton<IProductDetailService, ProductDetailManager>();
 builder.Services.AddSingleton<IProductCommentDal, EFProductCommentDal>();
 builder.Services.AddSingleton<ICommentService, CommentManager>();
 
+builder.Services.AddSingleton<IBoxService, BoxManager>();
+builder.Services.AddSingleton<IBoxDal, EfBoxDal>();
+
+builder.Services.AddSingleton<ISpecListService, SpecListManager>();
+builder.Services.AddSingleton<ISpecListDal, EfSpecListDal>();
+
+
 
 builder.Services.AddCors(options =>
 {

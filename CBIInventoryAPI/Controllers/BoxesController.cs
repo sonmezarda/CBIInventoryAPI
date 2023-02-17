@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,42 +8,41 @@ namespace CBIInventoryAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriesController : ControllerBase
+    public class BoxesController : ControllerBase
     {
-        private readonly ICategoryService categoryService;
-        public CategoriesController(ICategoryService categoryService)
+        private readonly IBoxService boxService;
+        public BoxesController(IBoxService boxService)
         {
-            this.categoryService = categoryService;
+            this.boxService = boxService;
         }
 
         [HttpGet]
-        public IActionResult GetAll() 
-        { 
-            var result = categoryService.GetAll();
+        public IActionResult Get()
+        {
+            var result = boxService.GetAll();
 
             return result.IsSuccess ? Ok(result) : BadRequest(result);
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult GetById(int id)
         {
-            var result = categoryService.GetById(id);
+            var result = boxService.GetById(id);
 
             return result.IsSuccess ? Ok(result) : BadRequest(result);
         }
-        
 
         [HttpPost]
-        public IActionResult Add(Category category)
+        public IActionResult Add(Box entity)
         {
-            var result = categoryService.Add(category);
-
+            var result = boxService.Add(entity);
             return result.IsSuccess ? Ok(result) : BadRequest(result);
         }
+
         [HttpPut]
-        public IActionResult Update(Category category)
+        public IActionResult Update(Box entity)
         {
-            var result = categoryService.Update(category);
+            var result = boxService.Update(entity);
             return result.IsSuccess ? Ok(result) : BadRequest(result);
 
         }
@@ -50,10 +50,9 @@ namespace CBIInventoryAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var result = categoryService.Delete(id);
-
+            var result = boxService.Delete(id);
             return result.IsSuccess ? Ok(result) : BadRequest(result);
-        }
 
+        }
     }
 }

@@ -17,10 +17,10 @@ namespace DataAccess.Concrete.EntityFramework
     {
         public SpecWithName Get(Expression<Func<SpecWithName, bool>>? filter = null)
         {
-            return this.GetAll(filter).FirstOrDefault();
+            return this.GetAllWithNames(filter).FirstOrDefault();
         }
 
-        public List<SpecWithName> GetAll(Expression<Func<SpecWithName, bool>>? filter = null)
+        public List<SpecWithName> GetAllWithNames(Expression<Func<SpecWithName, bool>>? filter = null)
         {
             
             using (InventoryContext context = new InventoryContext())

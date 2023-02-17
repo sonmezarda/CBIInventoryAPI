@@ -7,8 +7,9 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server = DESKTOP-MEA3PRN\NEWSQLSERVER; Database=DbCBI;User Id = DESKTOP-MEA3PRN\ardac;Encrypt=False;TrustServerCertificate=True;Integrated Security = SSPI;");
-       
+            //optionsBuilder.UseSqlServer(@"Server=172.17.0.2;Database=DbCBI;User Id=sa;Password=Cbi454567;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer(@"Server=192.168.192.1,1433;Database=DbCBI;User Id=sa;Password=Cbi454567;TrustServerCertificate=True;");
+
         }
 
         public DbSet<Product> Products { get; set; }

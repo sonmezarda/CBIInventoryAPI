@@ -14,6 +14,6 @@ namespace Business.Abstract
         DataResult<Box> GetById(int id);
         Result Add(Box box);
         Result Update(Box box);
-        Result Delete(Box box);
+        Result Delete(int id);
     }
 }

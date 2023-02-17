@@ -35,9 +35,10 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public Result Delete(Box box)
+        public Result Delete(int id)
         {
-            _boxDal.Delete(box);
+            var entity = _boxDal.Get(p =>p.Id == id);
+            _boxDal.Delete(entity);
             return new SuccessResult();
         }
     }
