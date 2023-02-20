@@ -14,7 +14,7 @@ namespace Business.Abstract
         DataResult<List<ProductSpecWithNamesDto>> GetAllWithNames();
         DataResult<List<ProductSpec>> GetAll();
         DataResult<ProductSpecWithNamesDto> GetByProductId(int id);
-        Result Add(ProductSpec spec);
+        DataResult<ProductSpec> Add(ProductSpec spec);
         Result Update(ProductSpec spec);
         Result Delete(int id);
     }

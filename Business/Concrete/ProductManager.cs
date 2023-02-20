@@ -21,9 +21,9 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
-        public DataResult<List<ProductWithNamesDto>> GetAllWithNames()
+        public DataResult<List<ProductWithObjectsDto>> GetAllWithNames()
         {
-            return new SuccessDataResult<List<ProductWithNamesDto>>(_productDal.GetAll());
+            return new SuccessDataResult<List<ProductWithObjectsDto>>(_productDal.GetAll());
         }
 
         public DataResult<List<Product>> GetByCategoryId(int categoryId)
@@ -31,15 +31,15 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == categoryId));
         }
 
-        public DataResult<ProductWithNamesDto> GetByIdWithNames(int id)
+        public DataResult<ProductWithObjectsDto> GetByIdWithNames(int id)
         {
-            return new SuccessDataResult<ProductWithNamesDto>(_productDal.Get(p => p.Id == id));
+            return new SuccessDataResult<ProductWithObjectsDto>(_productDal.Get(p => p.Id == id));
         }
 
-        public Result Add(Product product)
+        public DataResult<Product> Add(Product product)
         {
-            _productDal.Add(product);
-            return new SuccessResult();
+            return new SuccessDataResult<Product>(_productDal.Add(product));
+   
         }
 
         public Result Update(Product product)

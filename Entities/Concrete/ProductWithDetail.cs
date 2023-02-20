@@ -5,7 +5,7 @@ namespace Entities.Concrete
 {
     public class ProductWithDetail : IEntity
     {
-        public ProductWithNamesDto Product { get; set; }
+        public ProductWithObjectsDto Product { get; set; }
         public ProductDetail ProductDetail { get; set; }
     }
 }

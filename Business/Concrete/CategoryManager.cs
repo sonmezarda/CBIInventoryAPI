@@ -25,7 +25,6 @@ namespace Business.Concrete
 
         public DataResult<Category> Add(Category category)
         {
-            //_categoryDal.Add(category);
             return new SuccessDataResult<Category>(_categoryDal.Add(category));
         }
 

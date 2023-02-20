@@ -11,11 +11,11 @@ namespace Business.Abstract
 {
     public interface IProductService
     {
-        DataResult<List<ProductWithNamesDto>> GetAllWithNames();
-        DataResult<ProductWithNamesDto> GetByIdWithNames(int id);
+        DataResult<List<ProductWithObjectsDto>> GetAllWithNames();
+        DataResult<ProductWithObjectsDto> GetByIdWithNames(int id);
         DataResult<List<Product>> GetByCategoryId(int categoryId);
         DataResult<Product> GetById(int id);
-        Result Add(Product product);
+        DataResult<Product> Add(Product product);
         Result Update(Product product);
         Result Delete(int id);
         DataResult<ProductWithDetail> GetWithDetailById(int id);
