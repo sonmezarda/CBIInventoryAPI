@@ -47,6 +47,7 @@ namespace DataAccess.Concrete.EntityFramework
         }
         public ProductWithDetail GetWithDetailById(int id)
         {
+            /*
             EFSpecDal _specDal = new EFSpecDal();
             EFProductCommentDal _productCommentDal = new EFProductCommentDal();
 
@@ -64,7 +65,8 @@ namespace DataAccess.Concrete.EntityFramework
                 }
             };
 
-            return productWithDetail;
+            return productWithDetail;*/
+            return null;
         }
     }
 }

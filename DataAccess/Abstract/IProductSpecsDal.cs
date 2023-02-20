@@ -10,11 +10,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface ISpecDal : IEntityRepository<Spec>
+    public interface IProductSpecsDal : IEntityRepository<ProductSpec>
     {
-        /*
-        public List<SpecWithName> GetAllWithNames(Expression<Func<SpecWithName, bool>>? filter = null);
-        public List<SpecWithName> GetByProductId(int id);
-        */
+        public List<ProductSpecWithObjectDto> GetAllWithObj(Expression<Func<ProductSpecWithObjectDto, bool>>? filter = null);
+
     }
 }
