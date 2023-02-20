@@ -19,11 +19,10 @@ namespace Business.Concrete
             _productCommentDal = productCommentDal;
         }
 
-        public Result Add(ProductComment productComment)
+        public DataResult<ProductComment> Add(ProductComment productComment)
         {
             productComment.Date = DateTime.Now;
-            _productCommentDal.Add(productComment);
-            return new SuccessResult();
+            return new SuccessDataResult<ProductComment>(_productCommentDal.Add(productComment));
         }
 
         public Result Delete(int id)

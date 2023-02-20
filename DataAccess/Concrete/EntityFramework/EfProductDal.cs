@@ -10,11 +10,11 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfProductDal : EfEntityRepository<Product, InventoryContext>, IProductDal
     {
-        public ProductWithNamesDto Get(Expression<Func<ProductWithNamesDto, bool>>? filter=null)
+        public ProductWithObjectsDto Get(Expression<Func<ProductWithObjectsDto, bool>>? filter=null)
         {
             return this.GetAll(filter).FirstOrDefault(); 
         }
-        public List<ProductWithNamesDto> GetAll(Expression<Func<ProductWithNamesDto, bool>>? filter=null)
+        public List<ProductWithObjectsDto> GetAll(Expression<Func<ProductWithObjectsDto, bool>>? filter=null)
         {
             
             using (InventoryContext context = new InventoryContext())
@@ -24,13 +24,13 @@ namespace DataAccess.Concrete.EntityFramework
                                  on p.CategoryId equals c.Id
                              join b in context.Boxes on p.BoxId equals b.Id
 
-                             select new ProductWithNamesDto
+                             select new ProductWithObjectsDto
                              {
                                  Id = p.Id,
                                  Name = p.Name,
-                                 CategoryName = c.Name,
+                                 Category = c,
                                  StockCount = p.StockCount,
-                                 BoxName = b.Name,
+                                 Box = b,
                                  Image = p.Image
                              };
                 if (filter != null)
@@ -47,10 +47,11 @@ namespace DataAccess.Concrete.EntityFramework
         }
         public ProductWithDetail GetWithDetailById(int id)
         {
+            /*
             EFSpecDal _specDal = new EFSpecDal();
             EFProductCommentDal _productCommentDal = new EFProductCommentDal();
 
-            ProductWithNamesDto product = this.Get(p => p.Id == id);
+            ProductWithObjectsDto product = this.Get(p => p.Id == id);
       
             List<SpecWithName> productSpecs = _specDal.GetByProductId(id);
             List<ProductComment> productComments = _productCommentDal.GetAll(pc => pc.ProductId == id);
@@ -64,7 +65,8 @@ namespace DataAccess.Concrete.EntityFramework
                 }
             };
 
-            return productWithDetail;
+            return productWithDetail;*/
+            return null;
         }
     }
 }

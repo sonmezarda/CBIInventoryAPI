@@ -15,11 +15,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EFSpecDal : EfEntityRepository<Spec, InventoryContext>, ISpecDal
     {
-        public SpecWithName Get(Expression<Func<SpecWithName, bool>>? filter = null)
-        {
-            return this.GetAllWithNames(filter).FirstOrDefault();
-        }
-
+        /*
         public List<SpecWithName> GetAllWithNames(Expression<Func<SpecWithName, bool>>? filter = null)
         {
             
@@ -66,6 +62,6 @@ namespace DataAccess.Concrete.EntityFramework
                              };
                 return result.ToList();
             }
-        }
+        }*/
     }
 }

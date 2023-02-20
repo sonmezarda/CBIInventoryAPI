@@ -23,10 +23,9 @@ namespace Business.Concrete
             return new SuccessDataResult<Box>(_boxDal.Get(p => p.Id == id));
         }
 
-        public Result Add(Box box)
+        public DataResult<Box> Add(Box box)
         {
-            _boxDal.Add(box);
-            return new SuccessResult();
+            return new SuccessDataResult<Box>(_boxDal.Add(box));
         }
 
         public Result Update(Box box)

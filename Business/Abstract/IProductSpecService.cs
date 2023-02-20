@@ -11,11 +11,9 @@ namespace Business.Abstract
 {
     public interface IProductSpecService
     {
-        DataResult<List<ProductSpecWithNamesDto>> GetAllWithNames();
-        DataResult<List<ProductSpec>> GetAll();
-        DataResult<ProductSpecWithNamesDto> GetByProductId(int id);
-        Result Add(ProductSpec spec);
-        Result Update(ProductSpec spec);
+        DataResult<List<ProductSpecWithObjectDto>> GetAllWithObj();
+        DataResult<List<ProductSpecWithObjectDto>> GetByProductIdWithObj(int productId);
+        DataResult<ProductSpecWithValueDto> Add(ProductSpecWithValueDto entity);
         Result Delete(int id);
     }
 }

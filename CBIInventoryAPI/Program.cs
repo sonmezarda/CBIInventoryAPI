@@ -24,6 +24,12 @@ builder.Services.AddSingleton<IBoxDal, EfBoxDal>();
 builder.Services.AddSingleton<ISpecListService, SpecListManager>();
 builder.Services.AddSingleton<ISpecListDal, EfSpecListDal>();
 
+builder.Services.AddSingleton<IProductSpecService, ProductSpecManager>();
+builder.Services.AddSingleton<IProductSpecsDal, EfProductSpecDal>();
+
+builder.Services.AddSingleton<ISpecDal, EFSpecDal>();
+
+
 
 
 builder.Services.AddCors(options =>

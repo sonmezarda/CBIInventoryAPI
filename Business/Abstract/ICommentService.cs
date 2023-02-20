@@ -15,7 +15,7 @@ namespace Business.Abstract
         DataResult<List<ProductComment>> GetAll();
         DataResult<List<ProductComment>> GetByProductId(int productId);
         Result Delete(int id);
-        Result Add(ProductComment productComment); 
+        DataResult<ProductComment> Add(ProductComment productComment); 
         Result Update(ProductComment productComment);
     }
 }

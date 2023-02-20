@@ -12,7 +12,7 @@ namespace Business.Abstract
     {
         DataResult<List<Box>> GetAll();
         DataResult<Box> GetById(int id);
-        Result Add(Box box);
+        DataResult<Box> Add(Box box);
         Result Update(Box box);
         Result Delete(int id);
     }
