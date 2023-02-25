@@ -42,7 +42,7 @@ namespace Business.Concrete
             {
                 Id = productSpec.Id,
                 ProductId= productSpec.ProductId,
-                SpecId = spec.Id,
+                SpecId = spec.SpecId,
                 SpecValue = entity.SpecValue
             };
 
