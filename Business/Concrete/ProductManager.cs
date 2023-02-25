@@ -16,9 +16,13 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         private readonly IProductDal _productDal;
-        public ProductManager(IProductDal productDal)
+        private readonly IProductSpecsDal _productSpecDal;
+        private readonly IProductCommentDal _commentDal;
+        public ProductManager(IProductDal productDal, IProductSpecsDal productSpecs, IProductCommentDal commentDal)
         {
             _productDal = productDal;
+            _productSpecDal = productSpecs;
+            _commentDal = commentDal;
         }
 
         public DataResult<List<ProductWithObjectsDto>> GetAllWithNames()
@@ -58,7 +62,20 @@ namespace Business.Concrete
 
         public DataResult<ProductWithDetail> GetWithDetailById(int id)
         {
-            return new SuccessDataResult<ProductWithDetail>(_productDal.GetWithDetailById(id));
+            var product = _productDal.Get(p => p.Id == id);
+            var specs = _productSpecDal.GetAllWithObj(ps => ps.ProductId == id);
+            var comments = _commentDal.GetAll(c => c.ProductId == id);
+            var productDetail = new ProductDetail
+            {
+                Specs = specs,
+                Comments = comments
+            };
+            var productWithDetail = new ProductWithDetail
+            {
+                Product = product,
+                ProductDetail = productDetail
+            };
+            return new SuccessDataResult<ProductWithDetail>(productWithDetail);
         }
 
         DataResult<Product> IProductService.GetById(int id)

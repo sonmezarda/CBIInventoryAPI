@@ -1,0 +1,23 @@
+
+version: '3.7'
+#docker run --rm -p 5204:5204 -p 7204:7204   loturas/cbiinventoryapi:0.1
+#-e ASPNETCORE_HTTP_PORT=https://+:7204
+#-e ASPNETCORE_URLS=http://+:5204
+services:
+  inventory-api:
+    image: loturas/cbiinventoryapi:latest
+    
+    ports:
+      - 7204:7204
+      - 5204:5204
+
+    environment:
+      - ASPNETCORE_HTTP_PORT=https://+:7204
+      - ASPNETCORE_URLS=http://+:5204
+    
+    restart: unless-stopped
+
+    volumes:
+      - .:/source
+
+

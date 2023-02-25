@@ -6,6 +6,6 @@ namespace Entities.Concrete
     public class ProductDetail : IEntity
     {
         public List<ProductComment>? Comments { get; set; }
-        public List<SpecWithName>? Specs { get; set; }
+        public List<ProductSpecWithObjectDto>? Specs { get; set; }
     }
 }

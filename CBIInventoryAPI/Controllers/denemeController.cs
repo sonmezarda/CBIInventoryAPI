@@ -26,7 +26,7 @@ namespace CBIInventoryAPI.Controllers
         [HttpGet]
         public IActionResult Deneme()
         {
-            return Ok("Hello World");
+            return Ok("Hello World2");
         }
 
         
