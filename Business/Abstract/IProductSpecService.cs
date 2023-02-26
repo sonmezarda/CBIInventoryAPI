@@ -13,7 +13,7 @@ namespace Business.Abstract
     {
         DataResult<List<ProductSpecWithObjectDto>> GetAllWithObj();
         DataResult<List<ProductSpecWithObjectDto>> GetByProductIdWithObj(int productId);
-        DataResult<ProductSpecWithValueDto> Add(ProductSpecWithValueDto entity);
+        DataResult<ProductSpecWithObjectDto> Add(ProductSpecWithValueDto entity);
         Result Delete(int id);
     }
 }

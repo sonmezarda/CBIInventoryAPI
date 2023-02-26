@@ -14,6 +14,7 @@ namespace CBIInventoryAPI.Controllers
         {
             this.productSpecService = productSpecService;
         }
+        
         [HttpGet]
         public IActionResult GetAll()
         {

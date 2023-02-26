@@ -10,8 +10,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal
 WORKDIR /app
 COPY --from=build /app ./
 
-EXPOSE 5000
-EXPOSE 7204
 EXPOSE 5204
 
 ENTRYPOINT ["dotnet", "CBIInventoryAPI.dll"]

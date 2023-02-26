@@ -22,7 +22,7 @@ namespace Business.Concrete
             _specListDal = specListDal;
             _specDal = specDal;
         }
-        public DataResult<ProductSpecWithValueDto> Add(ProductSpecWithValueDto entity)
+        public DataResult<ProductSpecWithObjectDto> Add(ProductSpecWithValueDto entity)
         {
             var spec = new Spec
             {
@@ -38,15 +38,16 @@ namespace Business.Concrete
             };
             productSpec = _productSpecsDal.Add(productSpec);
 
-            var productSpecWithValue = new ProductSpecWithValueDto
+            var specList = _specListDal.Get(sl => sl.Id == entity.SpecId);
+            var productSpecWithObject = new ProductSpecWithObjectDto
             {
                 Id = productSpec.Id,
-                ProductId= productSpec.ProductId,
-                SpecId = spec.SpecId,
+                ProductId = productSpec.ProductId,
+                Spec = specList,
                 SpecValue = entity.SpecValue
             };
 
-            return new SuccessDataResult<ProductSpecWithValueDto>(productSpecWithValue);
+            return new SuccessDataResult<ProductSpecWithObjectDto>(productSpecWithObject);
         }
 
         public Result Delete(int id)
