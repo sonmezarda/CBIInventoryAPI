@@ -8,7 +8,7 @@ namespace DataAccess.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer(@"Server=172.17.0.2;Database=DbCBI;User Id=sa;Password=Cbi454567;TrustServerCertificate=True;");
-            optionsBuilder.UseSqlServer(@"Server=192.168.192.1,1433;Database=DbCBI;User Id=sa;Password=Cbi454567;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer(@"Server=45.12.81.165,1433;Database=DbCBI;User Id=sa;Password=Cbi454567;TrustServerCertificate=True;");
 
         }
 

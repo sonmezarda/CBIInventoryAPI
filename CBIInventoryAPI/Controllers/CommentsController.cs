@@ -32,6 +32,7 @@ namespace CBIInventoryAPI.Controllers
             if (result.IsSuccess) return Ok(result);
             else return BadRequest(result);
         }
+        
         [HttpPost]
         public IActionResult Add(ProductComment comment)
         {
@@ -40,6 +41,7 @@ namespace CBIInventoryAPI.Controllers
             if (result.IsSuccess) return Ok(result);
             else return BadRequest(result);
         }
+        
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -48,6 +50,7 @@ namespace CBIInventoryAPI.Controllers
             if (result.IsSuccess) return Ok(result);
             else return BadRequest(result);
         }
+        
         [HttpPut("")]
         public IActionResult Update(ProductComment comment)
         {

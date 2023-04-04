@@ -13,7 +13,10 @@ namespace Business.Abstract
     {
         DataResult<List<ProductWithObjectsDto>> GetAllWithNames();
         DataResult<ProductWithObjectsDto> GetByIdWithNames(int id);
-        DataResult<List<Product>> GetByCategoryId(int categoryId);
+        DataResult<List<ProductWithObjectsDto>> GetByCategoryId(int categoryId);
+        DataResult<List<ProductWithObjectsDto>> GetByBoxId(int boxId);
+        DataResult<List<ProductWithObjectsDto>> SearchByName(string name);
+
         DataResult<Product> GetById(int id);
         DataResult<Product> Add(Product product);
         Result Update(Product product);
