@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Abstract;
@@ -30,9 +31,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ProductWithObjectsDto>>(_productDal.GetAll());
         }
 
-        public DataResult<List<Product>> GetByCategoryId(int categoryId)
+        public DataResult<List<ProductWithObjectsDto>> GetByCategoryId(int categoryId)
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == categoryId));
+            return new SuccessDataResult<List<ProductWithObjectsDto>>(_productDal.GetAll(p => p.Category.Id == categoryId));
         }
 
         public DataResult<ProductWithObjectsDto> GetByIdWithNames(int id)
@@ -81,6 +82,18 @@ namespace Business.Concrete
         DataResult<Product> IProductService.GetById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public DataResult<List<ProductWithObjectsDto>> GetByBoxId(int boxId)
+        {
+            return new SuccessDataResult<List<ProductWithObjectsDto>>(_productDal.GetAll(p => p.Box.Id == boxId));
+
+        }
+
+        public DataResult<List<ProductWithObjectsDto>> SearchByName(string name)
+        {
+            return new SuccessDataResult<List<ProductWithObjectsDto>>(_productDal.GetAll(p => p.Name.Contains(name)));
+
         }
     }
 }

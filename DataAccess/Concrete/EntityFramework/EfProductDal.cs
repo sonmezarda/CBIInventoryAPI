@@ -10,7 +10,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfProductDal : EfEntityRepository<Product, InventoryContext>, IProductDal
     {
-        public ProductWithObjectsDto Get(Expression<Func<ProductWithObjectsDto, bool>>? filter=null)
+        public ProductWithObjectsDto? Get(Expression<Func<ProductWithObjectsDto, bool>>? filter=null)
         {
             return this.GetAll(filter).FirstOrDefault(); 
         }
@@ -67,6 +67,13 @@ namespace DataAccess.Concrete.EntityFramework
 
             return productWithDetail;*/
             return null;
+        }
+
+        List<ProductWithObjectsDto> IProductDal.GetAll(Expression<Func<ProductWithObjectsDto, bool>> filter)
+        {
+            return this.GetAll(filter);
+
+            //throw new NotImplementedException();
         }
     }
 }
